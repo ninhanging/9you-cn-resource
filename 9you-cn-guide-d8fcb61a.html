@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>九游 · 稳定入口与页面说明</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e2329;
+            background-color: #f9fafb;
+        }
+
+        /* 深色头图区 */
+        .hero {
+            background: linear-gradient(145deg, #0b1a2f 0%, #162d47 100%);
+            color: #eaf0f7;
+            padding: 5rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 span {
+            color: #7bb3ff;
+            font-weight: 600;
+        }
+
+        .hero p {
+            max-width: 720px;
+            margin: 0 auto;
+            font-size: 1.15rem;
+            opacity: 0.85;
+            line-height: 1.7;
+        }
+
+        /* 正文浅色区 */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2.5rem 2rem 4rem;
+        }
+
+        .summary {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 2.5rem 2.8rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+            margin-bottom: 3rem;
+        }
+
+        .summary h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #0e1e30;
+            margin-bottom: 1.2rem;
+            position: relative;
+        }
+
+        .summary h2::before {
+            content: '→';
+            color: #3b82f6;
+            font-weight: 400;
+            margin-right: 8px;
+        }
+
+        .summary p {
+            font-size: 1rem;
+            color: #2c3a4b;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.8rem;
+            margin: 2.5rem 0;
+        }
+
+        .highlight-card {
+            background: #f3f6fd;
+            border-radius: 14px;
+            padding: 1.6rem 1.4rem;
+            transition: transform 0.15s, box-shadow 0.2s;
+            border: 1px solid #e6edf8;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(38, 99, 217, 0.08);
+        }
+
+        .highlight-card .icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #0b1f36;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-card p {
+            font-size: 0.9rem;
+            color: #3b4b5e;
+            margin-bottom: 0;
+        }
+
+        .usage-tip {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 2rem 2.5rem;
+            margin: 2.5rem 0;
+            border-left: 6px solid #3b82f6;
+        }
+
+        .usage-tip h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            color: #0e1e30;
+        }
+
+        .usage-tip p {
+            color: #2c3e50;
+        }
+
+        .faq-preview {
+            margin-top: 2.8rem;
+        }
+
+        .faq-preview details {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            padding: 0.8rem 1.5rem;
+            border: 1px solid #e4e9f2;
+        }
+
+        .faq-preview summary {
+            font-weight: 600;
+            color: #0b1f36;
+            cursor: pointer;
+            padding: 0.3rem 0;
+            font-size: 1rem;
+        }
+
+        .faq-preview summary::marker {
+            color: #3b82f6;
+        }
+
+        .faq-preview details p {
+            padding: 0.8rem 0 0.3rem;
+            color: #2b3b4e;
+            font-size: 0.95rem;
+        }
+
+        .note-box {
+            background: #ecf3fb;
+            border-radius: 16px;
+            padding: 1.8rem 2.2rem;
+            margin-top: 2.8rem;
+            color: #162d47;
+        }
+
+        .note-box p {
+            margin-bottom: 0.2rem;
+        }
+
+        .note-box a {
+            color: #1a5bc7;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted #3b82f6;
+        }
+
+        .note-box a:hover {
+            border-bottom: 2px solid #2563eb;
+        }
+
+        .inline-link {
+            color: #1a5bc7;
+            text-decoration: none;
+            border-bottom: 1px dotted #3b82f6;
+            transition: border-bottom 0.1s;
+        }
+
+        .inline-link:hover {
+            border-bottom: 2px solid #2563eb;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 3.5rem;
+            font-size: 0.9rem;
+            color: #6b7a8b;
+            border-top: 1px solid #dde3ed;
+            padding-top: 2rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 640px) {
+            .hero {
+                padding: 3.5rem 1.5rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 1.8rem 1rem 3rem;
+            }
+
+            .summary {
+                padding: 1.8rem 1.2rem;
+            }
+
+            .highlight-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .usage-tip {
+                padding: 1.5rem 1.2rem;
+            }
+
+            .note-box {
+                padding: 1.4rem 1.2rem;
+            }
+
+            .faq-preview details {
+                padding: 0.6rem 1rem;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .hero {
+                padding: 4.5rem 2rem 3.5rem;
+            }
+
+            .highlight-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 深色头图区 -->
+    <section class="hero">
+        <h1>稳定入口 · <span>九游</span></h1>
+        <p>从清晰的页面结构到一致的访问路径，为日常使用和资源回溯提供可依赖的起点。没有冗余引导，只呈现信息本身。</p>
+    </section>
+
+    <!-- 正文浅色区 -->
+    <div class="container">
+
+        <!-- 摘要 -->
+        <div class="summary">
+            <h2>页面说明</h2>
+            <p><strong>九游</strong> 不是一个聚合门户或信息流平台，而是一个指向特定资源集合的稳定访问节点。站点的内容组织以直接性和可查找性为目标，尽量降低用户在路径判断上的认知负担。以下从结构、特点与实际使用场景出发，提供一份克制的介绍。</p>
+        </div>
+
+        <!-- 亮点卡片 -->
+        <div class="highlight-grid">
+            <div class="highlight-card">
+                <div class="icon">📌</div>
+                <h3>固定路径</h3>
+                <p>URL 结构长期保持，不随意变更目录层级，减少死链与重定向带来的中断感。</p>
+            </div>
+            <div class="highlight-card">
+                <div class="icon">🧭</div>
+                <h3>低噪界面</h3>
+                <p>页面不嵌入第三方追踪脚本、弹窗或悬浮组件，仅保留必要的导航与内容区块。</p>
+            </div>
+            <div class="highlight-card">
+                <div class="icon">🗂️</div>
+                <h3>归类清晰</h3>
+                <p>信息按主题分组，标题与段落间留有充足间隔，便于快速扫读与定位目标内容。</p>
+            </div>
+            <div class="highlight-card">
+                <div class="icon">🔄</div>
+                <h3>可回溯</h3>
+                <p>关键页面均提供返回上层的链接或面包屑示意，支持在不同深度间折返而不迷航。</p>
+            </div>
+        </div>
+
+        <!-- 使用建议 -->
+        <div class="usage-tip">
+            <h3>🔹 使用场景建议</h3>
+            <p>如果你需要长期收藏一个指向特定资源集合的链接，建议将 <a href="https://9you-cn.com" class="inline-link">九游</a> 加入书签或固定标签页。在需要查找某个已了解过的条目时，直接通过站点内的分类索引跳转，比依赖搜索引擎更节省时间。也适合作为团队的共享参考入口——前提是已对站点的内容范围有基本预期，而非将其视作通用搜索引擎。</p>
+        </div>
+
+        <!-- FAQ 摘要（简洁） -->
+        <div class="faq-preview">
+            <details>
+                <summary>这个站点适合哪些用户？</summary>
+                <p>偏向于已经了解大致内容方向、需要固定访问位置的用户。不适合希望靠随机浏览发现内容的场景。</p>
+            </details>
+            <details>
+                <summary>资源更新频率如何？</summary>
+                <p>不定期更新，但每次更新会在对应分类页面顶部添加简要标注。无固定周期，不推送通知。</p>
+            </details>
+            <details>
+                <summary>是否有移动端适配？</summary>
+                <p>页面采用响应式布局，在手机和平板设备上阅读体验一致。交互元素以轻量点击为主，无需额外 App。</p>
+            </details>
+        </div>
+
+        <!-- 可信但克制的访问说明 -->
+        <div class="note-box">
+            <p>🧾 本站使用标准 HTTPS 连接，不收集个人浏览数据，不设置会员系统。所有链接指向的资源均经过基础可用性校验，但不对第三方内容做持续性保证。如发现链接失效，可通过站内「反馈」渠道（位于页面底部）提交。</p>
+            <p style="margin-top: 0.8rem;">如需直接访问主站，可点击 <a href="https://9you-cn.com">九游</a> 进入顶层页面。建议首次使用时先浏览「站点索引」以建立心理地图，后续访问效率会明显提升。</p>
+        </div>
+
+        <div class="footer-note">
+            <p>© 关于九游 · 页面结构说明 v1.2 · 内容仅作参考</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
